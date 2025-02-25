@@ -1,19 +1,16 @@
 package com.example.firstproject.dto;
 
 import com.example.firstproject.entity.Article;
+import lombok.AllArgsConstructor;
+import lombok.ToString;
+import lombok.NoArgsConstructor;
 
+@AllArgsConstructor
+@NoArgsConstructor // 기본 생성자 추가
+@ToString
 public class ArticleForm {
     private String title;
     private String content;
-
-    public ArticleForm() {
-
-    }
-
-    public ArticleForm(String title, String content) {
-        this.title = title;
-        this.content = content;
-    }
 
     public void setTitle(String title) {
         this.title = title;
@@ -23,15 +20,8 @@ public class ArticleForm {
         this.content = content;
     }
 
-    @Override
-    public String toString() {
-        return "ArticleForm{" +
-                "title='" + title + '\'' +
-                ", content='" + content + '\'' +
-                '}';
-    }
-
     public Article toEntity() {
         return new Article(null, title, content);
     }
 }
+
