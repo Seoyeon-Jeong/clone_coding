@@ -24,4 +24,3 @@ public class ArticleForm {
         return new Article(null, title, content);
     }
 }
-
