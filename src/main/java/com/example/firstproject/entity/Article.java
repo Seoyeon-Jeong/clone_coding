@@ -19,7 +19,7 @@ public class Article {
     @Column
     private String content;
 
-    public Long getID() {
+    public Long getId() {
         return id;
     }
 }

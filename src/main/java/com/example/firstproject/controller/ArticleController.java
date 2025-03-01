@@ -35,7 +35,7 @@ public class ArticleController {
         Article saved = articleRepository.save(article);
         log.info(saved.toString());
         // System.out.println(saved.toString());
-        return "redirect:/articles/" + saved.getID();
+        return "redirect:/articles/" + saved.getId();
     }
 
     @GetMapping("/articles/{id}")
@@ -51,5 +51,24 @@ public class ArticleController {
         List<Article> articleEntityList = articleRepository.findAll();
         model.addAttribute("articleList", articleEntityList);
         return "articles/index";
+    }
+
+    @GetMapping("/articles/{id}/edit")
+    public String edit(@PathVariable("id") Long id, Model model) {
+        Article articleEntity = articleRepository.findById(id).orElse(null);
+        model.addAttribute("article", articleEntity);
+        return "articles/edit";
+    }
+
+    @PostMapping("/articles/update")
+    public String update(ArticleForm form) {
+        Article articleEntity = form.toEntity();
+        log.info(articleEntity.toString());
+        Article target = articleRepository.findById(articleEntity.getId()).orElse(null);
+
+        if(target != null) {
+            articleRepository.save(articleEntity);
+        }
+        return "redirect:/articles/" + articleEntity.getId();
     }
 }

@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor // 기본 생성자 추가
 @ToString
 public class ArticleForm {
+    private Long id;
     private String title;
     private String content;
 
@@ -20,7 +21,11 @@ public class ArticleForm {
         this.content = content;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public Article toEntity() {
-        return new Article(null, title, content);
+        return new Article(id, title, content);
     }
 }
